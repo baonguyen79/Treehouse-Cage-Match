@@ -90,7 +90,7 @@ const makeDom = (result1 , result2) => {
 				},
 			
 			complete: function() {						//Done counting
-				let winnerAlert = "No winner !";
+				let winnerAlert = " No winner";
 				if (player1Count > player2Count) {
 					winnerAlert = result1.profile_name;
 					$("#pl1").addClass("winner");
@@ -103,7 +103,7 @@ const makeDom = (result1 , result2) => {
 					} 
 				}
       			$("#winnerAlert").html(`<strong>! Winner ${winnerAlert}</strong>`).addClass("winnerAlert");
-      			$(".winner").toggle( "pulsate" ).css("border-color", "red");
+      			$(".winner").toggle( "pulsate" ).css("border", "4px solid red");
       			$(":button").val("Reset Cage Match");
       			    			
 			}
