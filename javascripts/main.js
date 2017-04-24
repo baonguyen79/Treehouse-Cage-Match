@@ -92,19 +92,28 @@ const makeDom = (result1 , result2) => {
 			complete: function() {						//Done counting
 				let winnerAlert = " No winner";
 				if (player1Count > player2Count) {
-					winnerAlert = result1.profile_name;
+					// winnerAlert = result1.profile_name;
+					winnerAlert = result1.name;
 					$("#pl1").addClass("winner");
       				makeBadges(result1.badges);
 				} else {
 					if (player1Count < player2Count){
-					   winnerAlert = result2.profile_name;
+					   winnerAlert = result2.name;
 					   $("#pl2").addClass("winner");
 					   makeBadges(result2.badges);
 					} 
 				}
       			$("#winnerAlert").html(`<strong>! Winner ${winnerAlert}</strong>`).addClass("winnerAlert");
+				 let snd = new Audio('/Sound/TaDa.mp3').play();    //Play win sound
       			$(".winner").toggle( "pulsate" ).css("border", "4px solid red");
-      			$(":button").val("Reset Cage Match");
+
+      			// delay 1.5 second before announce winner
+      			setTimeout(() => {
+	      			var msg = new SpeechSynthesisUtterance(`${winnerAlert} Wins`);
+					window.speechSynthesis.speak(msg);
+      			}, 1500);
+
+      			$(":button").val("Reset Cage Match");   //  Change the button to refesh page text
       			    			
 			}
 		});  
